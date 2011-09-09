@@ -1,0 +1,7 @@
+Tested with ruby 1.9.2p180
+
+ruby turtle.rb complex.logo > complex_out.txt
+
+Not too much to say about this one...I included it rather than the cave or cipher
+puzzle solutions because I found it more challenging. I'm sure it can be improved,
+but that's precisely where feedback would be most welcome.

@@ -1,0 +1,36 @@
+Requires ruby 1.9. Tested with 1.9.2p180.
+
+ruby circuits.rb complex_circuits.txt
+or
+
+ruby circuits.rb complex_circuits.txt verbose
+if you'd like to watch the solver work.
+
+I initially started to write this with the intent of breaking the input file
+into individual circuits, then traversing each from the bulb to the inputs while
+constructing a tree of logic gates. That solution was pretty straightforward,
+but I was really thinking, "Meh, *another* traversal-based puzzle solution?"
+
+Suddenly, inspiration struck! http://yfrog.com/kj8u4dmj
+(thank you Mike. NSFW if you're a mollusc)
+
+Hmm. Cellular automata...?
+
+Digits could consume wire on each iteration and later be consumed by logic
+gates, which would then spawn more digits. Interesting. Probably really slow.
+
+That lead to the idea of updating more than one cell at a time by using regexps.
+Lines could be converted to a grid and transposed to apply regexps to columns as
+well as rows. 
+
+The algorithm works as follows.
+
+Repeat while there are digits remaining on the circuit diagram:
+1) Replace a digit next to a horizontal wire with that digit
+2) Transpose the grid
+3) Replace a logic gate surrounded by digits with the output of that gate
+4) Transpose the grid
+5) Replace a digit next to a light bulb with "on" or "off"
+
+Remove all the whitespace, and what remains is a series of lines containing
+only "on" and "off": the solution.
